@@ -1,13 +1,57 @@
+:root {
+    font-size: 18px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    gap: 20px;
+}
+
 table {
     max-width: 600px;
     width: 100%;
-    margin: auto;
 }
 
-table tr:nth-of-type(2n) {
+table tr:nth-child(odd) {
     background-color: #eee;
 }
 
 td {
     padding: 1rem;
+    font-size: 0.9rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+#add {
+    font-size: inherit;
+}
+
+dialog form {
+    display: flex;
+    flex-direction: column;
+}
+
+form h3 {
+    margin-top: 0;
+}
+
+input, select {
+    margin-bottom: 1rem;
+}
+
+.buttons button {
+    width: 50%;
+    margin: 0;
 }

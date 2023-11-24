@@ -21,18 +21,56 @@ function Book(title, author, wordCount, read) {
     this.read = read;
 }
 
-function addBook() {
+// control dialog window
+const bookDialog = document.querySelector('dialog');
 
+document.querySelector('#add').addEventListener('click', function() {
+    bookDialog.show();
+});
+
+document.querySelector('#close').addEventListener('click', function(e) {
+    e.preventDefault();
+    bookDialog.close();
+});
+
+bookDialog.addEventListener('close', function() {
+    showBooks();
+});
+
+document.querySelector('#addBook').addEventListener('click', function(e) {
+    e.preventDefault();
+    addBook();
+});
+
+function addBook() {
+    const vals = document.querySelectorAll('dialog input');
+    let read;
+    document.querySelector('select').value === 'Yes' ? read = true : read = false;
+    const newBook = new Book(vals[0].value, vals[1].value, Number(vals[2].value), read);
+    lib.push(newBook);
+    vals.forEach(input => {
+        input.value = '';
+    });
+    showBooks();
 }
 
 function showBooks() {
     const bookshelf = document.querySelector('#bookshelf');
+    bookshelf.innerHTML = '';
 
-    for (const book of lib) {
+    for (let i = 0; i < lib.length; ++i) {
         bookshelf.innerHTML += 
-            `<tr><td>${book.title}</td><td>${book.author}</td>
-            <td>${book.wordCount}</td><td>${book.read ? 'Yes' : 'No'}</td></tr>`;
+            `<tr><td>${lib[i].title}</td><td>${lib[i].author}</td>
+            <td>${lib[i].wordCount}</td><td>${lib[i].read ? 'Yes' : 'No'}</td>
+            <td><button class="remove" data-index="${i}">Remove</button></td></tr>`;
     }
+    
+    document.querySelectorAll('.remove').forEach(removal => {
+        removal.addEventListener('click', function(e) {
+            lib.splice(e.target.dataset.index, 1);
+            showBooks();
+        });
+    });
 }
 
 showBooks();

@@ -7,6 +7,7 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
+    <h1>Library</h1>
     <table id="bookshelf">
         <thead>
             <th>Title</th>
@@ -15,6 +16,26 @@
             <th>Read it?</th>
         </thead>
     </table>
+    <button id="add">Add a Book</button>
+    <dialog>
+        <form>
+            <h3>Add a Book</h3>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author">
+            <label for="words">Word Count</label>
+            <input type="number" id="words" name="words">
+            <label for="read">Read it?</label>
+            <select>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+            <div class="buttons">
+                <button id="addBook" type="submit">Add</button><button id="close">Close</button>
+            </div>
+        </form>
+    </dialog>
     <script src="script.js"></script>
 </body>
 </html>
