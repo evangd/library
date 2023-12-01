@@ -55,13 +55,19 @@ function addBook() {
 }
 
 function showBooks() {
-    const bookshelf = document.querySelector('#bookshelf');
+    const bookshelf = document.querySelector('tbody');
     bookshelf.innerHTML = '';
 
     for (let i = 0; i < lib.length; ++i) {
+
         bookshelf.innerHTML += 
             `<tr><td>${lib[i].title}</td><td>${lib[i].author}</td>
-            <td>${lib[i].wordCount}</td><td>${lib[i].read ? 'Yes' : 'No'}</td>
+            <td>${lib[i].wordCount}</td><td><select class="read-select" data-index="${i}">${
+                lib[i].read ?
+                    '<option selected>Yes</option><option>No</option>'
+                :
+                    '<option>Yes</option><option selected>No</option>'
+                }</select>
             <td><button class="remove" data-index="${i}">Remove</button></td></tr>`;
     }
     
@@ -70,6 +76,10 @@ function showBooks() {
             lib.splice(e.target.dataset.index, 1);
             showBooks();
         });
+    });
+    
+    document.querySelector('.read-select').forEach(selector => {
+         //selector.addEventListener('')
     });
 }
 
